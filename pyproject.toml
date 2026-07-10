@@ -1,0 +1,28 @@
+[project]
+name = "islp-study-notes"
+version = "0.1.0"
+description = "A collection of study notes for ISLP (Introduction to Statistical Learning with Python)."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "islp==0.4.1",
+    "joblib==1.5.3",
+    "l0bnb",
+    "lifelines==0.30.0",
+    "lxml==6.0.2",
+    "numba==0.63.1",
+    "numpy==2.3.5",
+    "pandas==3.0.0",
+    "pygam==0.12.0",
+    "pytorch-lightning==2.6.1",
+    "scikit-learn==1.8.0",
+    "scipy==1.16.3",
+    "statsmodels==0.14.6",
+    "torch==2.10.0",
+    "torchinfo==1.8.0",
+    "torchmetrics==1.8.2",
+    "torchvision==0.25.0",
+]
+
+[tool.uv.sources]
+l0bnb = { git = "https://github.com/jonathan-taylor/l0bnb.git", rev = "fix_inf" }
