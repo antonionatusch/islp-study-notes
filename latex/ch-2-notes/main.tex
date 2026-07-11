@@ -1,0 +1,191 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{psfrag}
+\usepackage{pgfplots}
+\usepackage{bm}
+\usepackage{microtype}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Other Settings
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{a4paper}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{deepGreen}{RGB}{26,111,0}
+\definecolor{shallowGreen}{RGB}{235,255,255}
+\definecolor{deepBlue}{RGB}{61,124,222}
+\definecolor{shallowBlue}{RGB}{235,249,255}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\orangebox[1]{\fcolorbox{ocre}{mygray}{\hspace{1em}#1\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{theorem}{Theorem}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Definition}[section]
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{width=8cm,compat=1.9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Notes for Chapter 2 of ISLP}
+\author{Antonio Miguel Natusch Zarco}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\section{What is Statistical Learning?}
+At first glance, we're presented
+with a Marketing example, where
+a series of \textit{budgets}
+(namely \textbf{\textcolor{orange}{TV, radio,}}
+and \textbf{\textcolor{orange}{Newspaper}})
+are examined to see if they have any effect on
+\textbf{\textcolor{orange}{sales.}}
+
+Such budgets, in a more abstract, statistical learning approach
+are to be considered \textit{input variables}
+(which can also be referred to as \textit{predictors, independent variables,
+	features} or \textit{variables}), typically denoted by using the
+symbol $X$ alongside as many subscripts as needed.
+
+\textbf{\textcolor{orange}{Sales}}, on the other hand,
+is what \textbf{depends on} these \textit{features},
+so it is often referred to as \textit{response}
+or \textit{dependent variable}, typically
+represented by $Y$
+
+A relationship between $Y$ and a series of \textit{features}
+$X = (X_1, X_2, \dots, X_p)$ is assumed,
+and be written in the general form:
+
+\begin{equation}
+	Y = f(X) + \epsilon
+\end{equation}
+
+, where:
+
+\begin{itemize}
+	\item $f$: Fixed but unknown function of $X_1, \dots, X_p$.
+	      Represents the \textit{systematic} information that $X$
+	      provides about $Y$.
+	\item $\epsilon$: Random \textit{error term}, independent of X and
+	      has mean zero.
+\end{itemize}
+
+\begin{center}
+	\textbf{Statistical learning is all about estimating this}
+	$f$ \textbf{function, whether for \textit{prediction}
+		or \textit{inference}}.
+\end{center}
+
+It is worth noting that $f$, when plotted,
+is a $p$-dimensional surface that is estimated
+based on the observed data,
+where $p$ refers to the amount of \textit{features}
+that our studied context possesses.
+
+Also, \textbf{$\epsilon$} averages to zero due
+to the following reason:
+
+Defining the sample regression equation for each observation $i$:
+
+\begin{equation}
+	y_i = \hat{\beta}_0 + \hat{\beta}_1 x_i + \hat{u}_i
+	\label{eq:sample-regression-equation}
+\end{equation}
+
+, where:
+
+\begin{itemize}
+	\item $y_i$: Response of observation $i$.
+	\item $\hat{\beta_0}$: Bias term, also known as the \textit{intercept}.
+	\item $\hat{\beta_1}$: Regression coefficient, which measures
+	      the expected change of a response $Y$ for a one-unit
+	      change in the observation $X$, assuming other variables
+	      are constant. In simple linear regression ($Y = \beta X + a$),
+	      $\beta$ is the slope of the line of best fit.
+	\item $x_i$: Observation being studied, assuming that $p = 1$.
+	\item $\hat{u_i}$: Residual or \textit{sample error term}.
+\end{itemize}
+
+Rearranging \eqref{eq:sample-regression-equation}, we get
+the formula for a single residual:
+
+\begin{equation}
+	\hat{u}_i = y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i
+	\label{eq:rearrange-sample-reg-eq}
+\end{equation}
+
+And, since Ordinary Least Squares works by minimizing
+the Sum of Squared Residuals (SSR),
+where a single squared residual can
+be seen on \eqref{eq:rearrange-sample-reg-eq}:
+
+\begin{equation}
+	\textit{SSR} = \sum_{i=1}^{n} \hat{u}_i ^ {2} = \sum_{i=1}^{n} (y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i)^2
+\end{equation}
+
+, we can see that minimizing this sum
+by taking its partial derivative
+through the chain rule:
+
+\begin{equation}
+	\frac{\partial\text{SSR}}{\partial \hat{\beta}_0} = \frac{\partial}{\partial\hat{\beta}_0} \sum_{i=1}^{n} (y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i)^2 = 0
+\end{equation}
+
+\begin{equation}
+	\sum_{i=1}^{n} 2(y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i) \cdot (-1) = 0
+\end{equation}
+
+($\cdot -2$):
+
+\begin{equation}
+	\sum_{i=1}^{n}(y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i) = 0
+	\label{ssr-diff-third-step}
+\end{equation}
+
+and since $\hat{u}_i$ is equal to the expression
+inside the parentheses on \eqref{ssr-diff-third-step}
+as seen on \eqref{eq:rearrange-sample-reg-eq}
+$\epsilon$ is indeed 0:
+
+\begin{equation}
+	\begin{split}
+		\sum_{i=1}^{n}\hat{u}_i                             & = 0 \\
+		\therefore \epsilon \equiv  \hat{u}_i \footnotemark & = 0
+	\end{split}
+\end{equation}
+\footnotetext{This is in the context of linear regression.}
+
+
+
+% section What is Statistical Learning? (end)
+\end{document}
