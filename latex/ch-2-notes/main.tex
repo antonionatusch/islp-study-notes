@@ -187,6 +187,65 @@ $\epsilon$ is indeed 0:
 
 \subsection{Prediction}\label{sub:Prediction} % (fold)
 
+Prediction is useful since it helps with
+situations like avoiding a wrong prescription
+to patients who are at high risk of
+adverse reaction to a given
+drug (mathematically speaking,
+we'd define the patients' features as \textit{X}
+and their
+risk for a severe adverse reaction as \textit{Y})
+
+Given that $ \epsilon $ averages to $ 0 $,
+we can predict $ Y $ using
+
+\begin{equation}
+	\hat{Y} = \hat{f}(\textit{X})
+	\label{eq:initial-y-pred}
+\end{equation}
+
+, where:
+
+\begin{itemize}
+	\item $ \hat{f} $: estimate for $ f $
+	\item $ \hat{Y} $: resulting prediction for \textit{Y}
+\end{itemize}
+
+The accuracy of a prediction depends on
+the \textit{reducible error} and the
+\textit{irreducible error}.
+
+\textit{Reducible} error is called as such
+because we could change the
+\textit{black box} (or $ f $)
+being used through the best available
+statistical learning technique
+in order to get better predictions,
+whereas \textit{irreducible} error
+is one which is determined by $ \epsilon $
+which, by definition\footnote{
+	\textit{X} will most likely
+	not have all of the needed features
+	for prediction, and even if
+	it did, there will also be some
+	unmeasurable variability due to
+	how nature \textit{works}.},
+will always be $ > 0 $.
+
+Due to what can be seen on \eqref{eq:initial-y-pred},
+it is easy to show that
+
+
+\begin{equation}
+	\begin{split}
+		E(Y - \hat{Y})^2 & = E[f(X) + \epsilon - \hat{f}(X)]^2                                                                                      \\
+		                 & = \underbrace{[f(X) - \hat{f(X)}]^2}_{\text{Reducible}} + \underbrace{\operatorname{Var}(\epsilon)}_{\text{Irreducible}}
+	\end{split}
+\end{equation}
+
+ISLP is concerned with knowing the best
+technique that minimizes the
+reducible error.
 
 
 % subsection Prediction (end)
