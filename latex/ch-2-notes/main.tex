@@ -249,6 +249,48 @@ reducible error.
 
 \subsection{Inference}\label{sub:Inference} % (fold)
 
+Inference is about trying to figure out
+the best $ f(X) $ such that we understand
+the association between \textit{Y}
+and \textit{X}
+but not necessarily make predictions.
+
+We must treat $ \hat{f} $ not as a
+black box but as a mathematical
+model that we must be fully aware of.
+
+Particularly, we may care about:
+
+\begin{itemize}
+	\item What predictors have the most influence over the response
+	\item Identify both the positive and negative (arithmetically speaking)
+	      that different predictors may have
+	\item Know if the model is a first-degree polynomial or a more complicated one.
+\end{itemize}
+
+The book covers both, whether combined or not.
+
+A scenario where a Marketing company wants to make
+predictions based on certain demographic measurements
+but are not interested on the inner relationship
+between them is a prediction issue, whereas
+figuring out how much of an effect do
+different media budgets have on boosting
+sales is a matter of inference, since
+we do care about the association between the predictors.
+
+A scenario that combines both is real-estate, since
+analysts may be concerned about both how much
+does a given predictor affect a house's price as well
+as predict a house's price given certain predictors'
+values.
+
+Usually, there's a trade-off between
+prediction (accuracy) and inference (interpretability).
+It is up to the engineer working on the problem
+to determine which of the two has to be prioritized the
+most.
+
 % subsection Inference (end)
 
 
