@@ -185,7 +185,7 @@ $\epsilon$ is indeed 0:
 \end{equation}
 \footnotetext{This is in the context of linear regression.}
 
-\subsection{Prediction}\label{sub:Prediction} % (fold)
+\subsection{Prediction} % (fold)
 
 Prediction is useful since it helps with
 situations like avoiding a wrong prescription
@@ -247,7 +247,7 @@ ISLP is concerned with knowing the best
 technique that minimizes the
 reducible error.
 
-\subsection{Inference}\label{sub:Inference} % (fold)
+\subsection{Inference} % (fold)
 
 Inference is about trying to figure out
 the best $ f(X) $ such that we understand
@@ -295,6 +295,72 @@ most.
 
 
 % subsection Prediction (end)
+
+\subsection{How to estimate $ f $}
+
+\subsubsection{Assumptions and notation} % (fold)
+
+We assume we've got $ n $ data points,
+which we will call the \textit{training data}.
+
+\begin{itemize}
+	\item $ x _{ij} $: value of the $ j $th predictor
+	      for observation $ i $, where $ i = 1, 2, \dots, n $ and $ 1, 2, \dots, p $.
+	\item $ y_i $: response variable for the $ i $th observation.
+  \item $ {(x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)} $: training data, where $ x_i = (x _{i1}, x _{i2}, \dots, x _{ip})^\top $.
+\end{itemize}
+
+% sub subsection Assumptions (end)
+
+We want to find a function  $ \hat{f} \quad s.t. \quad Y \approx \hat{f}(X) $ for any observation $ (X,Y) $.
+
+\subsubsection{Parametric Methods} % (fold)
+
+Parametric methods involve making an assumption about
+the shape of $ f $ and then using a method to use
+the training data in order to \textit{fit} or
+\textit{train} the model.
+
+Say we've assumed
+$ f $ has got the following linear model:
+
+\begin{equation}
+  f(X) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 +
+  \dots + \beta_p X_p
+  \label{eq:linear-model-1}
+\end{equation}
+
+This simplifies the estimation process since,
+instead of having to estimate an arbitrary
+$ p $-dimensional function $ f(X) $,
+we just need to estimate the $ p + 1 $ coefficients
+$ \beta_0, \beta_1, \dots, \beta_p $
+
+As for the method for training, the most common
+method to fit \eqref{eq:linear-model-1} is
+referred to as (ordinary) least squares, where
+one minimizes the residual sum of squares to
+find both $ \beta $ coefficients (when $ p = 1 $) or
+matrix algebra (when $ p > 1 $).
+
+A common trade-off for a parametric method has to
+do with choosing between
+difficulty of estimation and closeness to
+the true unknown form of $ f $.
+However, the closer we aspire to get to $ f $,
+the more complex the model is. Furthermore,
+fitting a more flexible model risks \textit{overfitting}
+the data, which means that it is sensitive to errors.
+
+% sub subsection Parametric Methods (end)
+
+\subsubsection{Non-parametric Methods} % (fold)
+
+
+
+% subsubsection Non-parametric Methods (end)
+
+% subsection How to estimate $ f $ (end)
 
 % section What is Statistical Learning? (end)
 \end{document}
